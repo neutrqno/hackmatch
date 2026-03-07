@@ -39,36 +39,22 @@ export default function Swipe() {
       )}
 
       {filteredUsers.map((user:any,index)=>(
-
-        <TinderCard
-          key={index}
-          preventSwipe={["up","down"]}
-        >
+        <TinderCard key={index} preventSwipe={["up","down"]}>
 
           <div className="bg-white shadow-xl rounded-xl p-6 w-80 mb-4">
 
-            <h2 className="text-xl font-bold">
-              {user.name}
-            </h2>
+            <h2 className="text-xl font-bold">{user.name}</h2>
 
-            <p className="mt-2">
-              Skills: {user.skills}
-            </p>
-
-            <p>
-              Hackathon: {user.hackathon}
-            </p>
-
-            <p>
-              Location: {user.location}
-            </p>
+            <p className="mt-2">Skills: {user.skills}</p>
+            <p>Hackathon: {user.hackathon}</p>
+            <p>Location: {user.location}</p>
 
           </div>
 
         </TinderCard>
-
       ))}
 
     </div>
+
   )
 }
