@@ -1,82 +1,61 @@
-"use client"
+<div className="bg-zinc-900 text-white shadow-xl rounded-xl p-6 w-80">
 
-import TinderCard from "react-tinder-card"
-import { useEffect, useState } from "react"
+<h2 className="text-2xl font-bold mb-2">
+{user.name}
+</h2>
 
-export default function Swipe() {
+<p className="text-gray-400 mb-2">
+{user.location}
+</p>
 
-  const [users,setUsers] = useState([])
-  const [hackathon,setHackathon] = useState("")
+<div className="mb-3">
+<span className="text-purple-400 font-semibold">
+Skills
+</span>
 
-  useEffect(()=>{
-    fetch("https://hackmatch-api.onrender.com/users")
-      .then(res=>res.json())
-      .then(data=>setUsers(data))
-  },[])
+<p className="text-gray-300">
+{user.skills}
+</p>
+</div>
 
-  const filteredUsers = users.filter((user:any)=>
-    hackathon && user.hackathon?.toLowerCase().includes(hackathon.toLowerCase())
-  )
+<div className="mb-3">
+<span className="text-purple-400 font-semibold">
+Hackathon
+</span>
 
-  return(
+<p className="text-gray-300">
+{user.hackathon}
+</p>
+</div>
 
-    <div className="flex flex-col items-center mt-10">
+<hr className="my-3 border-gray-700"/>
 
-      <h1 className="text-3xl font-bold mb-6">
-        Find Teammates 🚀
-      </h1>
+<div className="space-y-2">
 
-      <input
-        placeholder="Enter Hackathon Name"
-        className="border p-2 mb-8"
-        onChange={(e)=>setHackathon(e.target.value)}
-      />
+<div className="flex justify-between">
+<span>GitHub</span>
+<button onClick={()=>copy(user.github)}
+className="bg-gray-800 px-2 py-1 rounded text-sm">
+Copy
+</button>
+</div>
 
-      {filteredUsers.map((user:any,index)=>(
+<div className="flex justify-between">
+<span>LinkedIn</span>
+<button onClick={()=>copy(user.linkedin)}
+className="bg-gray-800 px-2 py-1 rounded text-sm">
+Copy
+</button>
+</div>
 
-        <TinderCard
-          key={index}
-          preventSwipe={["up","down"]}
-        >
+<div className="flex justify-between">
+<span>Discord</span>
+<button onClick={()=>copy(user.discord)}
+className="bg-gray-800 px-2 py-1 rounded text-sm">
+Copy
+</button>
+</div>
 
-          <div className="bg-white shadow-xl rounded-xl p-6 w-80 mb-4">
+</div>
 
-            <h2 className="text-xl font-bold">
-              {user.name}
-            </h2>
-
-            <p className="mt-2">
-              Skills: {user.skills}
-            </p>
-
-            <p>
-              Hackathon: {user.hackathon}
-            </p>
-
-            <p>
-              Location: {user.location}
-            </p>
-
-            <hr className="my-3"/>
-
-            <p>
-              GitHub: {user.github}
-            </p>
-
-            <p>
-              LinkedIn: {user.linkedin}
-            </p>
-
-            <p>
-              Discord: {user.discord}
-            </p>
-
-          </div>
-
-        </TinderCard>
-
-      ))}
-
-    </div>
-  )
-}
+</div>

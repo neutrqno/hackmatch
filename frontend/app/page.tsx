@@ -14,7 +14,7 @@ export default function Home() {
 
   const submit = async () => {
 
-    const response = await fetch("https://hackmatch-api.onrender.com/users",{
+    await fetch("https://hackmatch-api.onrender.com/users",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
@@ -30,71 +30,77 @@ export default function Home() {
       })
     })
 
-    await response.json()
-
-    alert("Profile saved!")
+    alert("Profile created 🚀")
   }
 
   return(
 
-    <div className="p-10 max-w-xl mx-auto">
+    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
 
-      <h1 className="text-3xl font-bold mb-6">
-        HackMatch 🚀
-      </h1>
+      <div className="text-center mb-10">
 
-      <p className="mb-6">
-        Find teammates for your hackathon
-      </p>
+        <h1 className="text-5xl font-bold mb-4">
+          HackMatch 🚀
+        </h1>
 
-      <input
+        <p className="text-gray-400">
+          Find teammates for your next hackathon
+        </p>
+
+      </div>
+
+      <div className="bg-zinc-900 p-8 rounded-xl shadow-xl w-[400px]">
+
+        <input
         placeholder="Name"
-        className="border p-2 w-full mb-3"
+        className="w-full mb-3 p-2 rounded bg-black border border-gray-700"
         onChange={(e)=>setName(e.target.value)}
-      />
+        />
 
-      <input
+        <input
         placeholder="Skills (Python, React...)"
-        className="border p-2 w-full mb-3"
+        className="w-full mb-3 p-2 rounded bg-black border border-gray-700"
         onChange={(e)=>setSkills(e.target.value)}
-      />
+        />
 
-      <input
+        <input
         placeholder="Hackathon name"
-        className="border p-2 w-full mb-3"
+        className="w-full mb-3 p-2 rounded bg-black border border-gray-700"
         onChange={(e)=>setHackathon(e.target.value)}
-      />
+        />
 
-      <input
+        <input
         placeholder="Location"
-        className="border p-2 w-full mb-3"
+        className="w-full mb-3 p-2 rounded bg-black border border-gray-700"
         onChange={(e)=>setLocation(e.target.value)}
-      />
+        />
 
-      <input
+        <input
         placeholder="GitHub username"
-        className="border p-2 w-full mb-3"
+        className="w-full mb-3 p-2 rounded bg-black border border-gray-700"
         onChange={(e)=>setGithub(e.target.value)}
-      />
+        />
 
-      <input
+        <input
         placeholder="LinkedIn profile"
-        className="border p-2 w-full mb-3"
+        className="w-full mb-3 p-2 rounded bg-black border border-gray-700"
         onChange={(e)=>setLinkedin(e.target.value)}
-      />
+        />
 
-      <input
+        <input
         placeholder="Discord username"
-        className="border p-2 w-full mb-3"
+        className="w-full mb-5 p-2 rounded bg-black border border-gray-700"
         onChange={(e)=>setDiscord(e.target.value)}
-      />
+        />
 
-      <button
+        <button
         onClick={submit}
-        className="bg-black text-white px-4 py-2"
-      >
+        className="w-full bg-purple-600 hover:bg-purple-500 p-2 rounded font-semibold"
+        >
         Create Profile
-      </button>
+        </button>
+
+      </div>
 
     </div>
   )
