@@ -15,10 +15,10 @@ export default function Swipe() {
   },[])
 
   const filteredUsers = users.filter((user:any)=>
-    hackathon && user.hackathon?.toLowerCase() === hackathon.toLowerCase()
+    hackathon && user.hackathon?.toLowerCase().includes(hackathon.toLowerCase())
   )
 
-  return (
+  return(
 
     <div className="flex flex-col items-center mt-10">
 
@@ -32,29 +32,51 @@ export default function Swipe() {
         onChange={(e)=>setHackathon(e.target.value)}
       />
 
-      {filteredUsers.length === 0 && hackathon && (
-        <p className="text-gray-500 mb-4">
-          No teammates found for this hackathon yet.
-        </p>
-      )}
-
       {filteredUsers.map((user:any,index)=>(
-        <TinderCard key={index} preventSwipe={["up","down"]}>
+
+        <TinderCard
+          key={index}
+          preventSwipe={["up","down"]}
+        >
 
           <div className="bg-white shadow-xl rounded-xl p-6 w-80 mb-4">
 
-            <h2 className="text-xl font-bold">{user.name}</h2>
+            <h2 className="text-xl font-bold">
+              {user.name}
+            </h2>
 
-            <p className="mt-2">Skills: {user.skills}</p>
-            <p>Hackathon: {user.hackathon}</p>
-            <p>Location: {user.location}</p>
+            <p className="mt-2">
+              Skills: {user.skills}
+            </p>
+
+            <p>
+              Hackathon: {user.hackathon}
+            </p>
+
+            <p>
+              Location: {user.location}
+            </p>
+
+            <hr className="my-3"/>
+
+            <p>
+              GitHub: {user.github}
+            </p>
+
+            <p>
+              LinkedIn: {user.linkedin}
+            </p>
+
+            <p>
+              Discord: {user.discord}
+            </p>
 
           </div>
 
         </TinderCard>
+
       ))}
 
     </div>
-
   )
 }

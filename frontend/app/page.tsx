@@ -8,29 +8,34 @@ export default function Home() {
   const [skills,setSkills] = useState("")
   const [hackathon,setHackathon] = useState("")
   const [location,setLocation] = useState("")
+  const [github,setGithub] = useState("")
+  const [linkedin,setLinkedin] = useState("")
+  const [discord,setDiscord] = useState("")
 
- const submit = async () => {
+  const submit = async () => {
 
-  const response = await fetch("https://hackmatch-api.onrender.com/users", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name,
-      skills,
-      hackathon,
-      location
+    const response = await fetch("https://hackmatch-api.onrender.com/users",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        name,
+        skills,
+        hackathon,
+        location,
+        github,
+        linkedin,
+        discord
+      })
     })
-  })
 
-  const data = await response.json()
+    await response.json()
 
-  console.log(data)
+    alert("Profile saved!")
+  }
 
-  alert("Profile saved!")
-}
-  return (
+  return(
 
     <div className="p-10 max-w-xl mx-auto">
 
@@ -39,31 +44,49 @@ export default function Home() {
       </h1>
 
       <p className="mb-6">
-        Find teammates for your next hackathon
+        Find teammates for your hackathon
       </p>
 
       <input
         placeholder="Name"
         className="border p-2 w-full mb-3"
-        onChange={e=>setName(e.target.value)}
+        onChange={(e)=>setName(e.target.value)}
       />
 
       <input
         placeholder="Skills (Python, React...)"
         className="border p-2 w-full mb-3"
-        onChange={e=>setSkills(e.target.value)}
+        onChange={(e)=>setSkills(e.target.value)}
       />
 
       <input
         placeholder="Hackathon name"
         className="border p-2 w-full mb-3"
-        onChange={e=>setHackathon(e.target.value)}
+        onChange={(e)=>setHackathon(e.target.value)}
       />
 
       <input
         placeholder="Location"
         className="border p-2 w-full mb-3"
-        onChange={e=>setLocation(e.target.value)}
+        onChange={(e)=>setLocation(e.target.value)}
+      />
+
+      <input
+        placeholder="GitHub username"
+        className="border p-2 w-full mb-3"
+        onChange={(e)=>setGithub(e.target.value)}
+      />
+
+      <input
+        placeholder="LinkedIn profile"
+        className="border p-2 w-full mb-3"
+        onChange={(e)=>setLinkedin(e.target.value)}
+      />
+
+      <input
+        placeholder="Discord username"
+        className="border p-2 w-full mb-3"
+        onChange={(e)=>setDiscord(e.target.value)}
       />
 
       <button
@@ -74,6 +97,5 @@ export default function Home() {
       </button>
 
     </div>
-
   )
 }

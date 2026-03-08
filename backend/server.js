@@ -8,16 +8,37 @@ app.use(express.json())
 
 let users = []
 
-app.get("/users", (req,res)=>{
-    res.json(users)
+app.get("/users",(req,res)=>{
+  res.json(users)
 })
 
-app.post("/users", (req,res)=>{
-    const user = req.body
-    users.push(user)
-    res.json({message:"User added", user})
+app.post("/users",(req,res)=>{
+
+  const {
+    name,
+    skills,
+    hackathon,
+    location,
+    github,
+    linkedin,
+    discord
+  } = req.body
+
+  const user = {
+    name,
+    skills,
+    hackathon,
+    location,
+    github,
+    linkedin,
+    discord
+  }
+
+  users.push(user)
+
+  res.json({message:"User added"})
 })
 
-app.listen(5000, ()=>{
-    console.log("Backend running on port 5000")
+app.listen(5000,()=>{
+  console.log("Backend running on port 5000")
 })
